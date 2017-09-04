@@ -1,0 +1,33 @@
+//---------------------
+// Colors
+//---------------------
+
+$primary-color: #009688;
+$secondary-color: #607D8B;
+$tertiary-color: #3F51B5;
+
+$color-white: #FFFFFF;
+
+$cc-header-content: $color-white;
+$cc-header-bg: $primary-color;
+$cc-header-tab-content: $color-white;
+$cc-header-tab-bg: $secondary-color;
+$cc-header-tab-hover-content: $primary-color;
+$cc-header-tab-hover-bg: $color-white;
+$cc-header-tab-spl-bg: $tertiary-color;
+$cc-header-tab-spl-hover-content: $tertiary-color;
+$cc-header-tab-hover-spl-bg: $color-white;
+
+$cc-quote-b-border: #E0E0E0;
+
+//---------------------
+// Font size
+//---------------------
+
+$fs-header-title-sm: 26px;
+$fs-header-tab: 16px;
+$fs-header-tab-lg: 18px;
+$fs-header-tab-icon: 25px;
+$fs-header-tab-icon-sm: 20px;
+
+$fs-quote-btn: 16px;

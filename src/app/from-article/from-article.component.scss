@@ -1,0 +1,66 @@
+@import '../../assets/_variables';
+
+/*
+ *  Styles - Page content
+ */
+
+article {
+    .panel-heading {
+        margin-left: 0;
+        margin-right: 0;
+
+        .article_title {
+            align-items: baseline !important;
+            padding-left: 0px;
+
+            h3 {
+                margin-right: 10px;
+            }
+
+            h4 {
+                font-style: italic;
+            }
+        }
+
+        .article_btns {
+            padding-right: 0px;
+
+            .btn {
+                margin-right: 5px;
+                font-size: $fs-quote-btn;
+
+                &:last-child {
+                    margin-right: 0px;
+                }
+            }
+        }
+
+        @media (min-width: 992px) {
+            display: flex;
+            flex-direction: row;
+
+            > [class^="col-"], > [class*=" col-"] {
+                display: flex;
+                align-items: center;
+            }
+
+            .article_title {
+                align-items: baseline !important;
+            }
+
+            .article_btns {
+                justify-content: flex-end;
+            }
+        }
+    }
+
+    .panel-body p {
+        border-bottom: 1px solid $cc-quote-b-border;
+        padding-bottom: 10px;
+
+        &:last-child {
+            border: none;
+            padding-bottom: 0px;
+        }
+    }
+}
