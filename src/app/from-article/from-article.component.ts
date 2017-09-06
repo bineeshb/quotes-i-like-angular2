@@ -30,7 +30,6 @@ export class FromArticleComponent implements OnInit {
 
   resetComponentDetails() {
     let comp = this;
-    comp.category = comp.category || 'books';
     this.articles = this.responseData.filter(function(eachArticle) {
       return (eachArticle.from === comp.category);
     });

@@ -4,11 +4,11 @@
             <h3><a [href]="article.titleWebsite" target="_blank">{{article.title}}</a></h3>
             <h4 *ngIf="article.by">by <a [href]="article.byWebsite" target="_blank">{{article.by}}</a></h4>
         </div>
-        <div class="col-xs-4 col-sm-6 col-md-6 article_btns">
+        <!-- <div class="col-xs-4 col-sm-6 col-md-6 article_btns">
             <button type="button" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i><span class="hidden-xs"> Add</span></button>
             <button type="button" class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i><span class="hidden-xs"> Edit</span></button>
             <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deletepopup"><i class="fa fa-trash-o" aria-hidden="true"></i><span class="hidden-xs"> Delete</span></button>
-        </div>
+        </div> -->
     </header>
     <section class="panel-body">
         <p *ngFor="let eachQuote of article.quotes">{{eachQuote}}</p>
