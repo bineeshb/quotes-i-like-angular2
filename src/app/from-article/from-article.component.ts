@@ -16,7 +16,7 @@ export class FromArticleComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getQuotesService.fetchData().subscribe(
+    this.getQuotesService.fetchAllQuotes().subscribe(
       (data) => {
         this.responseData = data;
         this.resetComponentDetails();
