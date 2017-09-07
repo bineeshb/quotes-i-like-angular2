@@ -7,13 +7,15 @@ import { environment } from '../environments/environment';
 
 import { AppComponent } from './app.component';
 import { FromArticleComponent } from './from-article/from-article.component';
+import { FormQuotesComponent } from './form-quotes/form-quotes.component';
 import { GetQuotesService } from './get-quotes.service';
 import { APP_ROUTES } from './app.routes';
 
 @NgModule({
   declarations: [
     AppComponent,
-    FromArticleComponent
+    FromArticleComponent,
+    FormQuotesComponent
   ],
   imports: [
     BrowserModule,

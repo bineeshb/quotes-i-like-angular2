@@ -1,0 +1,56 @@
+/*
+ *  Forms
+ */
+
+form {
+    .input-group {
+        margin-bottom: 10px;
+        .fa, .btn-txt {
+            display: block;
+        }
+        .fa {
+            font-size: 18px;
+        }
+    }
+    .btn-add-quote {
+        border: 2px dashed #ccc;
+    }
+    .form-action-btns {
+        margin-top: 30px;
+    }
+}
+
+form {
+    @media (max-width: 480px) {
+        .btn-group > .btn {
+            display: block;
+            width: 100%;
+            &:first-child {
+                border-bottom-left-radius: 0;
+                border-top-right-radius: 4px !important;
+                margin-left: -1px;
+            }
+            &:last-child {
+                border-bottom-left-radius: 4px !important;
+                border-top-right-radius: 0;
+            }
+        }
+    }
+    @media (max-width: 767px) {
+        .btn-block-xs {
+            display: block;
+            width: 100%;
+            margin-bottom: 15px;
+        }
+    }
+    @media (min-width: 768px) {
+        .input-group {
+            .fa {
+                margin-bottom: 5px;
+            }
+        }
+        .btn-save {
+            margin-right: 10px;
+        }
+    }
+}
