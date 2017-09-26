@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
@@ -19,6 +20,7 @@ import { APP_ROUTES } from './app.routes';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     HttpModule,
     APP_ROUTES,
     AngularFireModule.initializeApp(environment.firebase),
@@ -27,4 +29,5 @@ import { APP_ROUTES } from './app.routes';
   providers: [GetQuotesService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+
+export class AppModule {}

@@ -3,6 +3,9 @@
  */
 
 form {
+    .sign-mandatory {
+      color: #f00;
+    }
     .input-group {
         margin-bottom: 10px;
         .fa, .btn-txt {
@@ -17,6 +20,11 @@ form {
     }
     .form-action-btns {
         margin-top: 30px;
+    }
+    .input-group-addon.disabled {
+        color: #555;
+        background-color: #eee;
+        border: 1px solid #ccc;
     }
 }
 
