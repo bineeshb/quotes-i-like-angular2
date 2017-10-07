@@ -1,0 +1,21 @@
+<div [ngSwitch]="modalType">
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">
+      <span *ngSwitchCase="'delArticle'">Delete Article</span>
+      <span *ngSwitchCase="'delQuote'">Delete Quote</span>
+      <span *ngSwitchCase="'editArticle'">Edit Article</span>
+    </h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p *ngSwitchCase="'delArticle'">Are you sure you want to delete this article?</p>
+    <p *ngSwitchCase="'delQuote'">Are you sure you want to delete this quote?</p>
+    <app-form-quotes *ngSwitchCase="'editArticle'"></app-form-quotes>
+  </div>
+  <div class="modal-footer" *ngSwitchCase="'delArticle' || 'delQuote'">
+    <button type="button" class="btn btn-primary" (click)="callbackFunc()">Yes</button>
+    <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">No</button>
+  </div>
+</div>

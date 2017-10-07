@@ -6,17 +6,21 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { environment } from '../environments/environment';
 
+import { ModalModule } from 'ngx-bootstrap/modal';
+
 import { AppComponent } from './app.component';
 import { FromArticleComponent } from './from-article/from-article.component';
 import { FormQuotesComponent } from './form-quotes/form-quotes.component';
 import { GetQuotesService } from './get-quotes.service';
 import { APP_ROUTES } from './app.routes';
+import { AppModalsComponent } from './app-modals/app-modals.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FromArticleComponent,
-    FormQuotesComponent
+    FormQuotesComponent,
+    AppModalsComponent
   ],
   imports: [
     BrowserModule,
@@ -24,8 +28,10 @@ import { APP_ROUTES } from './app.routes';
     HttpModule,
     APP_ROUTES,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    ModalModule.forRoot()
   ],
+  entryComponents: [AppModalsComponent],
   providers: [GetQuotesService],
   bootstrap: [AppComponent]
 })

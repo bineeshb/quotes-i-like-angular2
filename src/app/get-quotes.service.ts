@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { Http } from '@angular/http';
 import 'rxjs/Rx';
+import * as firebase from 'firebase';
 
 @Injectable()
 export class GetQuotesService {
@@ -13,9 +14,20 @@ export class GetQuotesService {
   }
 
   fetchAllQuotes() {
-    /*return this.http.get('assets/data.json').map(
-      (res) => res.json()
-    );*/
     return this.quotes;
+  }
+
+  fetchFakeData() {
+    return this.http.get('assets/data.json').map(
+      (res) => res.json()
+    );
+  }
+
+  addNewQuote(newQuote) {
+    this.quotes.push(newQuote);
+  }
+
+  deleteQuote(id) {
+    this.quotes.remove(id);
   }
 }
