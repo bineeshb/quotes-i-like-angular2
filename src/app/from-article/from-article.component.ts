@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import * as _ from 'lodash';
 import { ActivatedRoute } from '@angular/router';
 import { GetQuotesService } from '../get-quotes.service';
 import { BsModalService } from 'ngx-bootstrap';
@@ -55,10 +56,12 @@ export class FromArticleComponent implements OnInit {
   }
 
   deleteArticle(id) {
-    this.bsModalRef = this.bsModalService.show(AppModalsComponent);
-    this.deleteArticleId = id;
-    this.bsModalRef.content.modalType = "delArticle";
-    this.bsModalRef.content.callbackFunc = this.confirmDeleteArticle.bind(this);
+    if(id !== null && id !== undefined) {
+      this.deleteArticleId = id;
+      this.bsModalRef = this.bsModalService.show(AppModalsComponent);
+      this.bsModalRef.content.modalType = "delArticle";
+      this.bsModalRef.content.callbackFunc = this.confirmDeleteArticle.bind(this);
+    }
   }
 
   confirmDeleteArticle() {
@@ -69,10 +72,20 @@ export class FromArticleComponent implements OnInit {
     this.bsModalRef.hide();
   }
 
-  editArticle() {
-    this.bsModalRef = this.bsModalService.show(AppModalsComponent);
-    //this.editArticleId = id;
-    this.bsModalRef.content.modalType = "editArticle";
-    //this.bsModalRef.content.callbackFunc = this.confirmDeleteArticle.bind(this);
+  editArticle(id) {
+    let editArticle;
+    
+    if(id !== null && id !== undefined) {
+      editArticle = _.cloneDeep(this.articles.find(function(eachArticle) {
+        return eachArticle.$key === id;
+      }));
+    }
+
+    if(editArticle !== null && editArticle !== undefined) {
+      editArticle.articleId = id;
+      this.bsModalRef = this.bsModalService.show(AppModalsComponent);
+      this.bsModalRef.content.modalType = "editArticle";
+      this.bsModalRef.content.editArticleModel = editArticle;
+    }
   }
 }

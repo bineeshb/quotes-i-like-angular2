@@ -27,6 +27,10 @@ export class GetQuotesService {
     this.quotes.push(newQuote);
   }
 
+  updateQuote(updateDetails) {
+    this.quotes.update(updateDetails.articleId, updateDetails);
+  }
+
   deleteQuote(id) {
     this.quotes.remove(id);
   }

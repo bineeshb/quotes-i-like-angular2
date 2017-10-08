@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { GetQuotesService } from '../get-quotes.service';
 import { AppModalsComponent } from '../app-modals/app-modals.component';
@@ -10,7 +10,15 @@ import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
   templateUrl: './form-quotes.component.html',
   styleUrls: ['./form-quotes.component.scss']
 })
+
 export class FormQuotesComponent implements OnInit {
+
+  @Input()
+  editArticleModel: any;
+
+  @Input()
+  editBsModalRef: BsModalRef;
+
   bsModalRef: BsModalRef;
   fromCategory = [
     { label: 'Books', value: 'books' },
@@ -19,7 +27,6 @@ export class FormQuotesComponent implements OnInit {
     { label: 'Movies', value: 'movies' },
     { label: 'TV shows', value: 'tvshows' }
   ];
-  selectedFrom: string;
   model = {
     from: "",
     title: "",
@@ -29,20 +36,31 @@ export class FormQuotesComponent implements OnInit {
     quotes: [""]
   };
   deleteQuoteIndex: number;
+  isEditArticle: boolean = false;
 
   constructor(
     private getQuotesService: GetQuotesService,
     private router: Router,
     private bsModalService: BsModalService
   ) {
-    this.selectedFrom = "books";
   }
 
   ngOnInit() {
+    if(this.editArticleModel) {
+      this.model = this.editArticleModel;
+      this.isEditArticle = true;
+    } else {
+      this.isEditArticle = false;
+    }
   }
 
   saveQuotes() {
-    this.getQuotesService.addNewQuote(this.model);
+    if(!this.isEditArticle) {
+      this.getQuotesService.addNewQuote(this.model);
+    } else {
+      this.getQuotesService.updateQuote(this.model);
+      this.editBsModalRef.hide();
+    }
 
     this.router.navigate([this.model.from]);
   }

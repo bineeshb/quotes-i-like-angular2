@@ -12,9 +12,9 @@
   <div class="modal-body">
     <p *ngSwitchCase="'delArticle'">Are you sure you want to delete this article?</p>
     <p *ngSwitchCase="'delQuote'">Are you sure you want to delete this quote?</p>
-    <app-form-quotes *ngSwitchCase="'editArticle'"></app-form-quotes>
+    <app-form-quotes *ngSwitchCase="'editArticle'" [editArticleModel]="editArticleModel" [editBsModalRef]="bsModalRef"></app-form-quotes>
   </div>
-  <div class="modal-footer" *ngSwitchCase="'delArticle' || 'delQuote'">
+  <div class="modal-footer" *ngSwitchCase="modalType === 'delArticle' || modalType === 'delQuote' ? modalType : ''">
     <button type="button" class="btn btn-primary" (click)="callbackFunc()">Yes</button>
     <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">No</button>
   </div>

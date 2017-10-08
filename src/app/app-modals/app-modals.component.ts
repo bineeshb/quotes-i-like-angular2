@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgSwitch } from '@angular/common';
+// import { NgSwitch } from '@angular/common';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 import { FormQuotesComponent } from '../form-quotes/form-quotes.component';
 
@@ -11,6 +11,7 @@ import { FormQuotesComponent } from '../form-quotes/form-quotes.component';
 export class AppModalsComponent implements OnInit {
   public modalType: string;
   public callbackFunc: any;
+  public editArticleModel: any;
 
   constructor(public bsModalRef: BsModalRef) {
   }
