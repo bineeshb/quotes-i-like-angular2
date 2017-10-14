@@ -1,18 +1,39 @@
-<header class="main_header">
-    <div class="container">
-        <div class="row page_title">
-            <h1>Quotes I like from</h1>
-        </div>
-        <nav class="row menu_nav">
-            <ul>
-                <li *ngFor="let eachNav of navLinks">
-                    <a [routerLink]="[eachNav.routerPath]" [ngClass]="eachNav.linkClass" [routerLinkActive]="['active']">
-                        <i class="icon fa" [ngClass]="eachNav.iconClass" aria-hidden="true"></i><span>{{eachNav.linkLabel}}</span>
-                    </a>
-                </li>
+<header>
+    <nav class="navbar navbar-inverse">
+        <div class="container">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" [ngClass]="{active: selectedCategory || categoryDropdown.className == 'open'}">Quotes I Like From</a>
+          </div>
+      
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+              <li dropdown [ngClass]="{active: selectedCategory}" #categoryDropdown>
+                <a dropdownToggle class="dropdown-placeholder" [ngClass]="{selected: selectedCategory}">{{selectedCategory || "(Select)"}} <span class="caret"></span></a>
+                <ul class="dropdown-menu" *dropdownMenu>
+                  <li *ngFor="let eachNav of navLinks">
+                        <a [routerLink]="[eachNav.routerPath]" class="dropdown-item" [routerLinkActive]="['active']" (click)="selectedCategory = eachNav.linkLabel;">
+                            <span>{{eachNav.linkLabel}}</span>
+                        </a>
+                    </li>
+                </ul>
+              </li>
             </ul>
-        </nav>
-    </div>
+            <ul class="nav navbar-nav navbar-right" (click)="selectedCategory = '';">
+              <li><a>Dashboard</a></li>
+              <li [routerLinkActive]="['active']"><a [routerLink]="['addnewquote']">Add new Quote</a></li>
+              <li><a>Search</a></li>
+            </ul>
+          </div>
+        </div>
+    </nav>
 </header>
 
 <section class="container content_body active">

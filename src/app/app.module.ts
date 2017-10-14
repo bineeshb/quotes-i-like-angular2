@@ -7,6 +7,8 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { environment } from '../environments/environment';
 
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 import { AppComponent } from './app.component';
 import { FromArticleComponent } from './from-article/from-article.component';
@@ -29,7 +31,9 @@ import { AppModalsComponent } from './app-modals/app-modals.component';
     APP_ROUTES,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    TypeaheadModule.forRoot(),
+    BsDropdownModule.forRoot()
   ],
   entryComponents: [AppModalsComponent],
   providers: [GetQuotesService],

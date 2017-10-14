@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import $ from 'jquery';
 
 @Component({
   selector: 'app-root',
@@ -7,11 +8,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   navLinks = [
-    { linkLabel: 'Books', routerPath: 'books', iconClass: 'fa-book', linkClass: '' },
-    { linkLabel: 'Internet', routerPath: 'internet', iconClass: 'fa-globe', linkClass: '' },
-    { linkLabel: 'Personalities', routerPath: 'personalities', iconClass: 'fa-users', linkClass: '' },
-    { linkLabel: 'Movies', routerPath: 'movies', iconClass: 'fa-film', linkClass: '' },
-    { linkLabel: 'TV shows', routerPath: 'tvshows', iconClass: 'fa-television', linkClass: '' },
-    { linkLabel: 'Add a new quote', routerPath: 'addnewquote', iconClass: 'fa-plus-circle', linkClass: 'tab_add_quote' }
+    { linkLabel: 'Books', routerPath: 'books' },
+    { linkLabel: 'Internet', routerPath: 'internet' },
+    { linkLabel: 'Personalities', routerPath: 'personalities' },
+    { linkLabel: 'Movies', routerPath: 'movies' },
+    { linkLabel: 'TV shows', routerPath: 'tvshows' }
   ];
+  selectedCategory: string = 'Books';
 }

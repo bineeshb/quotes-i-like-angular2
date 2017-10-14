@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import * as _ from 'lodash';
+import { ReactiveFormsModule, FormGroup, FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { GetQuotesService } from '../get-quotes.service';
 import { BsModalService } from 'ngx-bootstrap';
@@ -17,6 +18,8 @@ export class FromArticleComponent implements OnInit {
   category = null;
   bsModalRef: BsModalRef;
   deleteArticleId: string;
+  sortBy: string = "asc";
+  searchString: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -53,6 +56,7 @@ export class FromArticleComponent implements OnInit {
     this.articles = this.responseData.filter(function(eachArticle) {
       return (eachArticle.from === comp.category);
     });
+    this.sortArticles();
   }
 
   deleteArticle(id) {
@@ -87,5 +91,10 @@ export class FromArticleComponent implements OnInit {
       this.bsModalRef.content.modalType = "editArticle";
       this.bsModalRef.content.editArticleModel = editArticle;
     }
+  }
+
+  sortArticles() {
+    // this.articles = _.orderBy(this.articles, ['title'], [order]);
+    this.articles = _.orderBy(this.articles, ['title'], [this.sortBy]);
   }
 }

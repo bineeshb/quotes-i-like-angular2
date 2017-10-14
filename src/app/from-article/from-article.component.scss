@@ -3,6 +3,14 @@
 /*
  *  Styles - Page content
  */
+.loading-block {
+    text-align: center;
+    margin-top: 100px;
+    .fa {
+        display: inline-block;
+        color: #607D8B;
+    }
+}
 
 article {
     .panel-heading {
