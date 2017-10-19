@@ -8,6 +8,7 @@ import * as firebase from 'firebase';
 export class GetQuotesService {
 
   quotes: FirebaseListObservable<any[]>;
+  responseData = [];
 
   constructor(private http: Http, db: AngularFireDatabase) {
     this.quotes = db.list('/quotes');

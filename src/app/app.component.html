@@ -1,35 +1,33 @@
 <header>
     <nav class="navbar navbar-inverse">
         <div class="container">
-          <!-- Brand and toggle get grouped for better mobile display -->
           <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <button type="button" class="navbar-toggle collapsed">
               <span class="sr-only">Toggle navigation</span>
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" [ngClass]="{active: selectedCategory || categoryDropdown.className == 'open'}">Quotes I Like From</a>
+            <a class="navbar-brand" [ngClass]="{active: !!globalData.selectedCategory || categoryDropdown.className == 'open'}">Quotes I Like From</a>
           </div>
       
-          <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-              <li dropdown [ngClass]="{active: selectedCategory}" #categoryDropdown>
-                <a dropdownToggle class="dropdown-placeholder" [ngClass]="{selected: selectedCategory}">{{selectedCategory || "(Select)"}} <span class="caret"></span></a>
+              <li dropdown [ngClass]="{active: !!globalData.selectedCategory}" #categoryDropdown>
+                <a dropdownToggle class="dropdown-placeholder" [ngClass]="{selected: !!globalData.selectedCategory}">{{globalData.selectedCategory || "(Select)"}} <span class="caret"></span></a>
                 <ul class="dropdown-menu" *dropdownMenu>
-                  <li *ngFor="let eachNav of navLinks">
-                        <a [routerLink]="[eachNav.routerPath]" class="dropdown-item" [routerLinkActive]="['active']" (click)="selectedCategory = eachNav.linkLabel;">
-                            <span>{{eachNav.linkLabel}}</span>
-                        </a>
-                    </li>
+                  <li *ngFor="let eachNav of globalData.categories">
+                    <a [routerLink]="[eachNav.reference]" class="dropdown-item" [routerLinkActive]="['active']" (click)="globalData.selectedCategory = eachNav.label;">
+                      <span>{{eachNav.label}}</span>
+                    </a>
+                  </li>
                 </ul>
               </li>
             </ul>
-            <ul class="nav navbar-nav navbar-right" (click)="selectedCategory = '';">
-              <li><a>Dashboard</a></li>
+            <ul class="nav navbar-nav navbar-right" (click)="globalData.selectedCategory = '';">
+              <li [routerLinkActive]="['active']"><a [routerLink]="['dashboard']">Dashboard</a></li>
               <li [routerLinkActive]="['active']"><a [routerLink]="['addnewquote']">Add new Quote</a></li>
-              <li><a>Search</a></li>
+              <!-- <li><a>Search</a></li> -->
             </ul>
           </div>
         </div>

@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import $ from 'jquery';
+import { Component, ViewChild } from '@angular/core';
+import { GlobalDataService } from './global-data.service';
+import { GetQuotesService } from './get-quotes.service';
 
 @Component({
   selector: 'app-root',
@@ -7,12 +8,15 @@ import $ from 'jquery';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  navLinks = [
-    { linkLabel: 'Books', routerPath: 'books' },
-    { linkLabel: 'Internet', routerPath: 'internet' },
-    { linkLabel: 'Personalities', routerPath: 'personalities' },
-    { linkLabel: 'Movies', routerPath: 'movies' },
-    { linkLabel: 'TV shows', routerPath: 'tvshows' }
-  ];
-  selectedCategory: string = 'Books';
+  constructor(private getQuotesService: GetQuotesService, private globalData: GlobalDataService) {
+  }
+
+  ngOnInit() {
+    this.getQuotesService.fetchAllQuotes().subscribe(
+      (data) => {
+        this.getQuotesService.responseData = data;
+        this.globalData.updateQuotes(data);
+      }
+    );
+  }
 }

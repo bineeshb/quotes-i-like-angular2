@@ -10,21 +10,28 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
+import { ChartsModule } from 'ng2-charts';
+
 import { AppComponent } from './app.component';
 import { FromArticleComponent } from './from-article/from-article.component';
 import { FormQuotesComponent } from './form-quotes/form-quotes.component';
+import { AppModalsComponent } from './app-modals/app-modals.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+
+import { GlobalDataService } from './global-data.service';
 import { GetQuotesService } from './get-quotes.service';
 import { APP_ROUTES } from './app.routes';
-import { AppModalsComponent } from './app-modals/app-modals.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FromArticleComponent,
     FormQuotesComponent,
-    AppModalsComponent
+    AppModalsComponent,
+    DashboardComponent
   ],
   imports: [
+    ChartsModule,
     BrowserModule,
     FormsModule,
     HttpModule,
@@ -36,7 +43,7 @@ import { AppModalsComponent } from './app-modals/app-modals.component';
     BsDropdownModule.forRoot()
   ],
   entryComponents: [AppModalsComponent],
-  providers: [GetQuotesService],
+  providers: [GlobalDataService, GetQuotesService],
   bootstrap: [AppComponent]
 })
 

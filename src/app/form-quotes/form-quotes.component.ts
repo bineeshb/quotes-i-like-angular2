@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { GlobalDataService } from '../global-data.service';
 import { GetQuotesService } from '../get-quotes.service';
 import { AppModalsComponent } from '../app-modals/app-modals.component';
 import { BsModalService } from 'ngx-bootstrap';
@@ -20,13 +21,6 @@ export class FormQuotesComponent implements OnInit {
   editBsModalRef: BsModalRef;
 
   bsModalRef: BsModalRef;
-  fromCategory = [
-    { label: 'Books', value: 'books' },
-    { label: 'Internet', value: 'internet' },
-    { label: 'Personalities', value: 'personalities' },
-    { label: 'Movies', value: 'movies' },
-    { label: 'TV shows', value: 'tvshows' }
-  ];
   model = {
     from: "",
     title: "",
@@ -39,6 +33,7 @@ export class FormQuotesComponent implements OnInit {
   isEditArticle: boolean = false;
 
   constructor(
+    private globalData: GlobalDataService,
     private getQuotesService: GetQuotesService,
     private router: Router,
     private bsModalService: BsModalService

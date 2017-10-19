@@ -2,10 +2,12 @@ import { Component, OnInit, Input } from '@angular/core';
 import * as _ from 'lodash';
 import { ReactiveFormsModule, FormGroup, FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { GlobalDataService } from '../global-data.service';
 import { GetQuotesService } from '../get-quotes.service';
 import { BsModalService } from 'ngx-bootstrap';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 import { AppModalsComponent } from '../app-modals/app-modals.component';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-from-article',
@@ -14,46 +16,41 @@ import { AppModalsComponent } from '../app-modals/app-modals.component';
 })
 export class FromArticleComponent implements OnInit {
   articles = [];
-  responseData = [];
   category = null;
   bsModalRef: BsModalRef;
   deleteArticleId: string;
   sortBy: string = "asc";
   searchString: string;
+  subscription: Subscription;
+  quotes: Array<any> = [];
 
   constructor(
     private route: ActivatedRoute,
+    private globalData: GlobalDataService,
     private getQuotesService: GetQuotesService,
     private bsModalService: BsModalService
   ) {
   }
 
   ngOnInit() {
-    this.getQuotesService.fetchAllQuotes().subscribe(
-      (data) => {
-        this.responseData = data;
-        this.resetComponentDetails();
-      }
-    );
+    let categoryObj;
 
-    // if(this.responseData.length < 1) {
-    //   this.getQuotesService.fetchFakeData().subscribe(
-    //     (data) => {
-    //       this.responseData = data;
-    //       this.resetComponentDetails();
-    //     }
-    //   );
-    // }
+    this.subscription = this.globalData.quotes$.subscribe(data => {
+      this.quotes = data; 
+      this.resetComponentDetails();
+    });
 
     this.route.params.forEach(params => {
       this.category = params["from"];
+      categoryObj = _.find(this.globalData.categories, ['reference', this.category]);
+      this.globalData.selectedCategory = categoryObj.label;
       this.resetComponentDetails();
     });
   }
 
   resetComponentDetails() {
     let comp = this;
-    this.articles = this.responseData.filter(function(eachArticle) {
+    this.articles = this.quotes.filter(function(eachArticle) {
       return (eachArticle.from === comp.category);
     });
     this.sortArticles();
@@ -94,7 +91,10 @@ export class FromArticleComponent implements OnInit {
   }
 
   sortArticles() {
-    // this.articles = _.orderBy(this.articles, ['title'], [order]);
     this.articles = _.orderBy(this.articles, ['title'], [this.sortBy]);
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }

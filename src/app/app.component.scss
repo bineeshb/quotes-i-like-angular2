@@ -12,8 +12,12 @@
         color: #ffffff;
     }
     .dropdown-menu {
-        left: -15px;
+        left: auto;
+        right: -1px;
         background-color: #607D8B;
+        & > li > a {
+            text-align: right;
+        }
         & > li > a:focus, & > li > a:hover {
             background-color: #009688;
         }
