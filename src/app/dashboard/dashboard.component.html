@@ -1,24 +1,32 @@
 <div class="loading-block" *ngIf="quotes.length == 0">
   <i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
 </div>
-<!-- <p *ngIf="quotes.length > 0">
-  dashboard works!
-</p> -->
-<div class="row" *ngIf="quotes.length > 0">
-  <div class="col-sm-6">
-    <h2>Number of Quotes in each category</h2>
-    <canvas baseChart
-                [data]="doughnutChartData"
-                [labels]="chartLabels"
-                [chartType]="'doughnut'"></canvas>
-  </div>
-  <div class="col-sm-6">
-    <h2>Number of articles &amp; Highest in an article</h2>
-    <canvas baseChart
+<div *ngIf="quotes.length > 0">
+  <div class="row container-charts">
+    <div class="col-sm-6">
+      <h3>Number of Quotes in each category</h3>
+      <canvas baseChart
+        [data]="doughnutChartData"
+        [labels]="chartLabels"
+        [chartType]="'doughnut'"></canvas>
+    </div>
+    <div class="col-sm-6">
+      <h3>Number of articles &amp; Highest in an article</h3>
+      <canvas baseChart
         [datasets]="barChartData"
         [labels]="chartLabels"
         [options]="barChartOptions"
         [legend]="barChartLegend"
         [chartType]="'bar'"></canvas>
+    </div>
+  </div>
+  <div class="row container-datatable">
+    <div class="col-sm-12">
+      <ngx-datatable class="material"
+        [columnMode]="'force'"
+        [rowHeight]="'auto'"
+        [rows]="tableRows"
+        [columns]="tableColumns"></ngx-datatable>
+    </div>
   </div>
 </div>

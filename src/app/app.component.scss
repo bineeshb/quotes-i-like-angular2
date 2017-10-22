@@ -3,7 +3,16 @@
 /*
  *  Styles - Header
  */
-
+.navbar-nav {
+    .dropdown-menu .fa {
+        font-size: 17px;
+        margin-left: 3px;
+    }
+    &.navbar-right .fa {
+        font-size: 17px;
+        margin-right: 3px;
+    }
+}
 .navbar-inverse {
     background-color: #009688;
     border-color: #009688;
@@ -15,8 +24,17 @@
         left: auto;
         right: -1px;
         background-color: #607D8B;
+        width: 200px;
+        & > li {
+            border-bottom: 1px dotted #ffffff;
+            &:last-child {
+                border: none;
+            }
+        }
         & > li > a {
             text-align: right;
+            padding: 10px 13px;
+            font-size: 16px;
         }
         & > li > a:focus, & > li > a:hover {
             background-color: #009688;

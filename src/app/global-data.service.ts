@@ -4,11 +4,11 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 @Injectable()
 export class GlobalDataService {
   categories = [
-    { label: 'Books', reference: 'books' },
-    { label: 'Internet', reference: 'internet' },
-    { label: 'Personalities', reference: 'personalities' },
-    { label: 'Movies', reference: 'movies' },
-    { label: 'TV shows', reference: 'tvshows' }
+    { label: 'Books', reference: 'books', iconClass: 'fa-book' },
+    { label: 'Internet', reference: 'internet', iconClass: 'fa-globe' },
+    { label: 'Personalities', reference: 'personalities', iconClass: 'fa-users' },
+    { label: 'Movies', reference: 'movies', iconClass: 'fa-film' },
+    { label: 'TV shows', reference: 'tvshows', iconClass: 'fa-television' }
   ];
   selectedCategory: string;
   private _quotesSource = new BehaviorSubject<Array<any>>([]);

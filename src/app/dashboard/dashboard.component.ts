@@ -24,6 +24,14 @@ export class DashboardComponent implements OnInit {
     {data: [], label: 'Highest no. of quotes in a article'}
   ];
 
+  tableRows: Array<any> = [];
+  tableColumns: Array<any> = [
+    { name: 'Category' },
+    { name: 'Total no. of Quotes' },
+    { name: 'No. of Articles' },
+    { name: 'Highest Quotes' }
+  ];
+
   constructor(private globalData: GlobalDataService) { }
 
   ngOnInit() {
@@ -40,6 +48,7 @@ export class DashboardComponent implements OnInit {
     comp.doughnutChartData = [];
     comp.barChartData[0].data = [];
     comp.barChartData[1].data = [];
+    comp.tableRows = [];
 
     stats = _.reduce(this.quotes, function(result, eachQuote) {
       if(!result[eachQuote.from]) {
@@ -72,6 +81,13 @@ export class DashboardComponent implements OnInit {
         comp.barChartData[0].data.push(stats[eachCategory.reference].noOfArticles);
         comp.barChartData[1].data.push(stats[eachCategory.reference].highestQuotes.noOfQuotes);
         comp.doughnutChartData.push(stats[eachCategory.reference].totalNoOfQuotes);
+
+        comp.tableRows.push({
+          category: eachCategory.label,
+          totalNoOfQuotes: stats[eachCategory.reference].totalNoOfQuotes,
+          noOfArticles: stats[eachCategory.reference].noOfArticles,
+          highestQuotes: stats[eachCategory.reference].highestQuotes.in + " (" + stats[eachCategory.reference].highestQuotes.noOfQuotes + ")"
+        });
       }
     });
   }

@@ -2,7 +2,7 @@
     <i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
 </div>
 <article *ngIf="articles.length > 0">
-    <div class="form-group">
+    <div class="form-group jumbotron">
         <div class="input-group input-group-lg">
             <input [(ngModel)]="searchString" [typeahead]="articles" typeaheadOptionField="title" class="form-control">
             <span class="input-group-btn">
@@ -32,11 +32,11 @@
             <!-- <button type="button" class="btn btn-primary">
                 <i class="fa fa-plus" aria-hidden="true"></i><span class="hidden-xs"> Add</span>
             </button> -->
-            <button type="button" class="btn btn-warning" (click)="editArticle(article.$key)">
-                <i class="fa fa-pencil" aria-hidden="true"></i><span class="hidden-xs"> Edit</span>
+            <button type="button" class="btn btn-warning" (click)="editArticle(article.$key)" tooltip="Edit">
+                <i class="fa fa-pencil" aria-hidden="true"></i>
             </button>
-            <button type="button" class="btn btn-danger" (click)="deleteArticle(article.$key)">
-                <i class="fa fa-trash-o" aria-hidden="true"></i><span class="hidden-xs"> Delete</span>
+            <button type="button" class="btn btn-danger" (click)="deleteArticle(article.$key)" tooltip="Delete">
+                <i class="fa fa-trash-o" aria-hidden="true"></i>
             </button>
         </div>
     </header>

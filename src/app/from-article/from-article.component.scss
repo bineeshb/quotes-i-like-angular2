@@ -28,10 +28,7 @@ article {
             .btn {
                 margin-right: 5px;
                 font-size: $fs-quote-btn;
-
-                &:last-child {
-                    margin-right: 0px;
-                }
+                border-radius: 50%;
             }
         }
 

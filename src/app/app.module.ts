@@ -9,8 +9,10 @@ import { environment } from '../environments/environment';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
 
 import { ChartsModule } from 'ng2-charts';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 import { AppComponent } from './app.component';
 import { FromArticleComponent } from './from-article/from-article.component';
@@ -32,6 +34,7 @@ import { APP_ROUTES } from './app.routes';
   ],
   imports: [
     ChartsModule,
+    NgxDatatableModule,
     BrowserModule,
     FormsModule,
     HttpModule,
@@ -40,7 +43,8 @@ import { APP_ROUTES } from './app.routes';
     AngularFireDatabaseModule,
     ModalModule.forRoot(),
     TypeaheadModule.forRoot(),
-    BsDropdownModule.forRoot()
+    BsDropdownModule.forRoot(),
+    TooltipModule.forRoot()
   ],
   entryComponents: [AppModalsComponent],
   providers: [GlobalDataService, GetQuotesService],
